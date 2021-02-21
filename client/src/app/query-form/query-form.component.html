@@ -1,0 +1,236 @@
+<h3 class="text-center">Query From the Database</h3>
+
+<div class="container">
+    <form [formGroup]="queryBuilderFormGroup" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Project Name:</mat-label>
+                    <mat-select formControlName="selectedProject" multiple>
+                        <mat-option *ngFor="let projectName of projectNameList" [value]="projectName">{{projectName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Items to Select:</mat-label>
+                    <mat-select formControlName="selectColumn" multiple>
+                        <mat-option *ngFor="let selectColumn of selectColumnList" [value]="selectColumn">
+                            {{selectColumn}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Items To Sum:</mat-label>
+                    <mat-select formControlName="sumColumn" multiple>
+                        <mat-option *ngFor="let sumColumn of sumColumnList" [value]="sumColumn">{{sumColumn}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Items To Group By:</mat-label>
+                    <mat-select formControlName="groupByColumn" multiple>
+                        <mat-option *ngFor="let groupByColumn of groupByColumnList" [value]="groupByColumn">
+                            {{groupByColumn}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+
+                <button mat-raised-button class="ml-3">Submit</button>
+
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button mat-raised-button class="ml-3 " (click)="exportcsv()">Download as .csv</button>
+        </div>
+    </div>
+    <table class="col-md-12" mat-table [dataSource]="entries" class="mat-elevation-z8" matSort id="entries-table">
+
+        <!-- 1. id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.id}} </td>
+        </ng-container>
+
+        <!-- 2. projName Column -->
+        <ng-container matColumnDef="projName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.projName}} </td>
+        </ng-container>
+
+        <!-- 3. platNo Column -->
+        <ng-container matColumnDef="platNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Number </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.platNo}} </td>
+        </ng-container>
+
+        <!-- 4. platType Column -->
+        <ng-container matColumnDef="platType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Type </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.platType}} </td>
+        </ng-container>
+
+        <!-- 5. platArea Column -->
+        <ng-container matColumnDef="platArea">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Area </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.platArea}} </td>
+        </ng-container>
+
+        <!-- 6. subArea Column -->
+        <ng-container matColumnDef="subArea">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Sub Area </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.subArea}} </td>
+        </ng-container>
+
+        <!-- 7. matType Column -->
+        <ng-container matColumnDef="matType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Type </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.matType}} </td>
+        </ng-container>
+
+        <!-- 8. matVariant Column -->
+        <ng-container matColumnDef="matVariant">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Variant </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.matVariant}} </td>
+        </ng-container>
+
+        <!-- 9. procMethod Column -->
+        <ng-container matColumnDef="procMethod">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Procurement Method </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.procMethod}} </td>
+        </ng-container>
+
+        <!-- 10. dwgNo Column -->
+        <ng-container matColumnDef="dwgNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DWG Number </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.dwgNo}} </td>
+        </ng-container>
+
+        <!-- 11. dwgCode Column -->
+        <ng-container matColumnDef="dwgCode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DWG Code </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.dwgCode}} </td>
+        </ng-container>
+
+        <!-- 12. matGroup Column -->
+        <ng-container matColumnDef="matGroup">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Group </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.matGroup}} </td>
+        </ng-container>
+
+        <!-- 13. description Column -->
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.description}} </td>
+        </ng-container>
+
+        <!-- 14. diameter Column -->
+        <ng-container matColumnDef="diameter">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Diameter </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.diameter}} </td>
+        </ng-container>
+
+        <!-- 15. thickness Column -->
+        <ng-container matColumnDef="thickness">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Thickness </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.thickness}} </td>
+        </ng-container>
+
+        <!-- 16. nal Column -->
+        <ng-container matColumnDef="nal">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> NAL </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.nal}} </td>
+        </ng-container>
+
+        <!-- 17. unitWeight Column -->
+        <ng-container matColumnDef="unitWeight">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Weight </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.unitWeight}} </td>
+        </ng-container>
+
+        <!-- 18. baseWeight Column -->
+        <ng-container matColumnDef="baseWeight">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Base Weight </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.baseWeight}} </td>
+        </ng-container>
+
+        <!-- 19. surfaceArea Column -->
+        <ng-container matColumnDef="surfaceArea">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Surface Area </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.surfaceArea}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total_SurfaceArea">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Surface Area </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.total_SurfaceArea}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total_BaseWeight">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Base Weight </th>
+            <td mat-cell *matCellDef="let entry"> {{entry.total_BaseWeight}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 50, 100, 250, 1000]" showFirstLastButtons></mat-paginator>
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Toppings</mat-label>
+        <mat-select [formControl]="toppings" multiple>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="toSelectGroup" label="Choose which columns to select.">
+        <form [formGroup]="toSelectGroup">
+            <app-to-select></app-to-select>
+            <div>
+                <button class="btn btn-primary" matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="toGroupByGroup" label="Choose which columns to group by.">
+        <form [formGroup]="toGroupByGroup">
+            <app-to-group-by></app-to-group-by>
+            <div>
+                <button class="btn btn-secondary mr-2" matStepperPrevious>Back</button>
+                <button class="btn btn-primary ml-2" matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="toSumGroup" label="Choose which columns to sum.">
+        <form [formGroup]="toSumGroup">
+            <app-to-sum></app-to-sum>
+            <div>
+                <button class="btn btn-secondary mr-2" matStepperPrevious>Back</button>
+                <button class="btn btn-primary ml-2" matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <div>
+            <h6>You are now done.</h6>
+        </div>
+        <div>
+            <button class="btn btn-secondary mr-2" matStepperPrevious>Back</button>
+            <button class="btn btn-success ml-2 mr-2" type="submit">Submit</button>
+            <button class="btn btn-danger ml-2" (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+    </mat-horizontal-stepper> -->
+</div>
