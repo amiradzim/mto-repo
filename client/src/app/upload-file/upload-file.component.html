@@ -1,13 +1,21 @@
-<div class="row" style="margin-bottom:15px;">
-    <div *ngIf="isUser">
+<h3 class="text-center">Updating the Database</h3>
+
+<hr class="rounded">
+
+<div class="alert alert-light" role="alert">
+    Uploading to the database allows the database to be updated with the latest MTO.
+</div>
+
+<div class="d-flex" style="margin-bottom:15px;">
+    <div *ngIf="isUser" class="alert alert-warning" role="alert">
         You have no rights to import to the database, please contact an admin for support.
     </div>
     <div *ngIf="!isUser">
-        <div class="col-md-3">
+        <div class="d-flex align-content-lg-start">
             <input #inputFile type="file" #file placeholder="Choose file" (change)="selectFile(file.files)">
             <button type="button" class="btn btn-success" (click)="uploadFile()">Upload File</button>
         </div>
-        <div class="col-md-4">
+        <div class="d-flex align-content-lg-start">
             <span class="upload" *ngIf="message">
                 {{message}}
             </span>
