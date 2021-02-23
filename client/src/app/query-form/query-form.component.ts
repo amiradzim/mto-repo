@@ -23,6 +23,7 @@ export class QueryFormComponent implements OnInit {
   allComplete: boolean = false;
 
   projectNameList: string[] = [];
+  platformNameList: string[] = [];
   selectColumnList: string[] = ['ProjName', 'PlatNo', 'PlatType', 'PlatArea', 'SubArea', 'MatType', 'MatVariant', 'ProcMethod', 'DwgNo', 'DwgCode', 'MatGroup', 'Description', 'Diameter', 'Thickness', 'Nal', 'UnitWeight', 'BaseWeight', 'SurfaceArea'];
   sumColumnList: string[] = ['BaseWeight', 'SurfaceArea'];
   // groupByColumnList: string[] = ['ProjName', 'PlatNo', 'PlatArea', 'SubArea', 'MatType', 'MatVariant', 'ProcMethod'];
@@ -35,12 +36,19 @@ export class QueryFormComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private _entriesService: EntriesService) { }
 
   ngOnInit(): void {
+
     this._entriesService.getProjects().subscribe(response => {
       this.projectNameList = response;
     }, error => {
       console.log(error);
-
     })
+
+    this._entriesService.getPlatforms().subscribe( response => {
+      this.platformNameList = response;
+    }, error => {
+      console.log(error);
+    })
+
     this.queryBuilderFormGroup = this._formBuilder.group({
       selectedProject: new FormControl(),
       selectColumn: new FormControl(),

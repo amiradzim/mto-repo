@@ -21,6 +21,15 @@
             </div>
             <div class="col-md-3">
                 <mat-form-field appearance="fill">
+                    <mat-label>Platform Name:</mat-label>
+                    <mat-select formControlName="selectedPlatforms" multiple>
+                        <mat-option *ngFor="let platformName of platformNameList" [value]="platformName">{{platformName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
                     <mat-label>Items to Select:</mat-label>
                     <mat-select formControlName="selectColumn" multiple>
                         <mat-option *ngFor="let selectColumn of selectColumnList" [value]="selectColumn">
