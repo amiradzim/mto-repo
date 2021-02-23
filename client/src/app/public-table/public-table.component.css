@@ -15,3 +15,8 @@ td {
     white-space: nowrap;
     height: 30px;
   }
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}

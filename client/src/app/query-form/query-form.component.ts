@@ -51,6 +51,7 @@ export class QueryFormComponent implements OnInit {
 
     this.queryBuilderFormGroup = this._formBuilder.group({
       selectedProject: new FormControl(),
+      selectedPlatforms: new FormControl(),
       selectColumn: new FormControl(),
       sumColumn: new FormControl(),
       // groupByColumn: new FormControl(),

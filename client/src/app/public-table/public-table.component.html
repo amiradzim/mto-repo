@@ -11,189 +11,113 @@
 
 <form [formGroup]="searchForm" class="search_form">
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Project Name</mat-label>
-    <input type="text"
-           aria-label="Project Name"
-           matInput
-           formControlName="projName"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+  <div class="container">
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Platform Number</mat-label>
-    <input type="text"
-           aria-label="Platform Number"
-           matInput
-           formControlName="platNo"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Project Name</mat-label>
+      <input type="text"
+             aria-label="Project Name"
+             matInput
+             formControlName="projName"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Platform Type</mat-label>
-    <input type="text"
-           aria-label="Platform Type"
-           matInput
-           formControlName="platType"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Platform Number</mat-label>
+      <input type="text"
+             aria-label="Platform Number"
+             matInput
+             formControlName="platNo"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Platform Area</mat-label>
-    <input type="text"
-           aria-label="Platform Area"
-           matInput
-           formControlName="platArea"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Platform Type</mat-label>
+      <input type="text"
+             aria-label="Platform Type"
+             matInput
+             formControlName="platType"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Sub Platform Area</mat-label>
-    <input type="text"
-           aria-label="Sub Platform Area"
-           matInput
-           formControlName="subArea"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Platform Area</mat-label>
+      <input type="text"
+             aria-label="Platform Area"
+             matInput
+             formControlName="platArea"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Material Type</mat-label>
-    <input type="text"
-           aria-label="Material Type"
-           matInput
-           formControlName="matType"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Sub Platform Area</mat-label>
+      <input type="text"
+             aria-label="Sub Platform Area"
+             matInput
+             formControlName="subArea"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Material Variant</mat-label>
-    <input type="text"
-           aria-label="Material Variant"
-           matInput
-           formControlName="matVariant"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+  </div>
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Procurement Method</mat-label>
-    <input type="text"
-           aria-label="Procurement Method"
-           matInput
-           formControlName="procMethod"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+  <div class="container">
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Material Group</mat-label>
-    <input type="text"
-           aria-label="Material Group"
-           matInput
-           formControlName="matGroup"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Material Type</mat-label>
+      <input type="text"
+             aria-label="Material Type"
+             matInput
+             formControlName="matType"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Material Variant</mat-label>
+      <input type="text"
+             aria-label="Material Variant"
+             matInput
+             formControlName="matVariant"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Procurement Method</mat-label>
+      <input type="text"
+             aria-label="Procurement Method"
+             matInput
+             formControlName="procMethod"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>DwgNo</mat-label>
-    <input type="text"
-           aria-label="DwgNo"
-           matInput
-           formControlName="dwgNo"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Material Group</mat-label>
+      <input type="text"
+             aria-label="Material Group"
+             matInput
+             formControlName="matGroup"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>DwgCode</mat-label>
-    <input type="text"
-           aria-label="DwgCode"
-           matInput
-           formControlName="dwgCode"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
+    <mat-form-field class="search_form_field" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input type="text"
+             aria-label="Description"
+             matInput
+             formControlName="description"
+             (keyup)="applyFilter()"
+      >
+    </mat-form-field>
 
-  <mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Description</mat-label>
-    <input type="text"
-           aria-label="Description"
-           matInput
-           formControlName="description"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>
-
-
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Diameter</mat-label>
-    <input type="text"
-           aria-label="Diameter"
-           matInput
-           formControlName="diameter"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
-
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Thickness</mat-label>
-    <input type="text"
-           aria-label="Thickness"
-           matInput
-           formControlName="thickness"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
-
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>Nal</mat-label>
-    <input type="text"
-           aria-label="Nal"
-           matInput
-           formControlName="nal"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
-
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>UnitWeight</mat-label>
-    <input type="text"
-           aria-label="UnitWeight"
-           matInput
-           formControlName="unitWeight"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
-
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>BaseWeight</mat-label>
-    <input type="text"
-           aria-label="BaseWeight"
-           matInput
-           formControlName="baseWeight"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
-
-
-  <!--<mat-form-field class="search_form_field" appearance="outline">
-    <mat-label>SurfaceArea</mat-label>
-    <input type="text"
-           aria-label="SurfaceArea"
-           matInput
-           formControlName="surfaceArea"
-           (keyup)="applyFilter()"
-    >
-  </mat-form-field>-->
+  </div>
 
 </form>
 
@@ -201,135 +125,125 @@
 
 <div class="search_table mat-elevation-z8 table-wrapper">
 
-  <!-- <mat-form-field class="search__form_field" appearance="outline">
-    <mat-label>Filter</mat-label>
-    <input
-    matInput
-    (keyup)="applyFilter($event)"
-    placeholder="Example: Jacket"
-    formControlName="platType"
-    #input>
-  </mat-form-field> -->
-
   <table mat-table [dataSource]="entries" class="mat-elevation-z8" matSort id="entries-table">
 
     <!-- 1. id Column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
       <td mat-cell *matCellDef="let entry"> {{entry.id}} </td>
     </ng-container>
 
     <!-- 2. projName Column -->
     <ng-container matColumnDef="projName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Project Name</th>
       <td mat-cell *matCellDef="let entry"> {{entry.projName}} </td>
     </ng-container>
 
     <!-- 3. platNo Column -->
     <ng-container matColumnDef="platNo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Number </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Number</th>
       <td mat-cell *matCellDef="let entry"> {{entry.platNo}} </td>
     </ng-container>
 
     <!-- 4. platType Column -->
     <ng-container matColumnDef="platType">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Type </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Type</th>
       <td mat-cell *matCellDef="let entry"> {{entry.platType}} </td>
     </ng-container>
 
     <!-- 5. platArea Column -->
     <ng-container matColumnDef="platArea">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Area </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Area</th>
       <td mat-cell *matCellDef="let entry"> {{entry.platArea}} </td>
     </ng-container>
 
     <!-- 6. subArea Column -->
     <ng-container matColumnDef="subArea">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Sub Area </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Platform Sub Area</th>
       <td mat-cell *matCellDef="let entry"> {{entry.subArea}} </td>
     </ng-container>
 
     <!-- 7. matType Column -->
     <ng-container matColumnDef="matType">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Type </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Type</th>
       <td mat-cell *matCellDef="let entry"> {{entry.matType}} </td>
     </ng-container>
 
     <!-- 8. matVariant Column -->
     <ng-container matColumnDef="matVariant">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Variant </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Variant</th>
       <td mat-cell *matCellDef="let entry"> {{entry.matVariant}} </td>
     </ng-container>
 
     <!-- 9. procMethod Column -->
     <ng-container matColumnDef="procMethod">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Procurement Method </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Procurement Method</th>
       <td mat-cell *matCellDef="let entry"> {{entry.procMethod}} </td>
     </ng-container>
 
     <!-- 10. dwgNo Column -->
     <ng-container matColumnDef="dwgNo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> DWG Number </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DWG Number</th>
       <td mat-cell *matCellDef="let entry"> {{entry.dwgNo}} </td>
     </ng-container>
 
     <!-- 11. dwgCode Column -->
     <ng-container matColumnDef="dwgCode">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> DWG Code </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DWG Code</th>
       <td mat-cell *matCellDef="let entry"> {{entry.dwgCode}} </td>
     </ng-container>
 
     <!-- 12. matGroup Column -->
     <ng-container matColumnDef="matGroup">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Group </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Material Group</th>
       <td mat-cell *matCellDef="let entry"> {{entry.matGroup}} </td>
     </ng-container>
 
     <!-- 13. description Column -->
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description</th>
       <td mat-cell *matCellDef="let entry"> {{entry.description}} </td>
     </ng-container>
 
     <!-- 14. diameter Column -->
     <ng-container matColumnDef="diameter">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Diameter </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Diameter</th>
       <td mat-cell *matCellDef="let entry"> {{entry.diameter}} </td>
     </ng-container>
 
     <!-- 15. thickness Column -->
     <ng-container matColumnDef="thickness">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Thickness </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Thickness</th>
       <td mat-cell *matCellDef="let entry"> {{entry.thickness}} </td>
     </ng-container>
 
     <!-- 16. nal Column -->
     <ng-container matColumnDef="nal">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> NAL </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> NAL</th>
       <td mat-cell *matCellDef="let entry"> {{entry.nal}} </td>
     </ng-container>
 
     <!-- 17. unitWeight Column -->
     <ng-container matColumnDef="unitWeight">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Weight </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Weight</th>
       <td mat-cell *matCellDef="let entry"> {{entry.unitWeight}} </td>
     </ng-container>
 
     <!-- 18. baseWeight Column -->
     <ng-container matColumnDef="baseWeight">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Base Weight </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Base Weight</th>
       <td mat-cell *matCellDef="let entry"> {{entry.baseWeight}} </td>
     </ng-container>
 
     <!-- 19. surfaceArea Column -->
     <ng-container matColumnDef="surfaceArea">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Surface Area </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Surface Area</th>
       <td mat-cell *matCellDef="let entry"> {{entry.surfaceArea}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      (click)="onRowClicked(row)"></tr>
+        (click)="onRowClicked(row)"></tr>
 
   </table>
 
