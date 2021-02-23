@@ -7,6 +7,7 @@ import * as XLSX from 'xlsx';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TableFilter } from '../_models/table-filter';
 import { EntryItems } from '../_models/entry-items';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -60,7 +61,7 @@ export class PublicTableComponent implements OnInit {
   }
 
   getEntries() {
-    this.http.get('https://localhost:5001/api/entries').subscribe((response: any[]) => {
+    this.http.get(environment.apiUrl + 'entries').subscribe((response: any[]) => {
       this.entries = new MatTableDataSource(response);
       this.entries.sort = this.sort;
       this.entries.paginator = this.paginator;
@@ -269,4 +270,4 @@ export class PublicTableComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
   }
 
-} 
+}

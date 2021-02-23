@@ -17,6 +17,7 @@ namespace API.Data
 
             var userData = await File.ReadAllTextAsync("Data/UserSeedData.json");
             var users = JsonSerializer.Deserialize<List<MtoUser>>(userData);
+            
             if (users != null)
                 foreach (var user in users)
                 {
