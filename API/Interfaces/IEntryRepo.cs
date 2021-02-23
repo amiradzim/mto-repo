@@ -9,7 +9,8 @@ namespace API.Interfaces
     public interface IEntryRepo
     {
         List<string> GetProjects();
-        List<dynamic> queryBuilder(EntriesQueryBuilderRequest entriesQueryBuilderRequest);
+        List<string> GetPlatforms();
+        List<dynamic> QueryBuilder(EntriesQueryBuilderRequest entriesQueryBuilderRequest);
         Task<bool> Insert(InsertEntriesRequest insertEntriesRequest);
     }
 }

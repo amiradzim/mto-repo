@@ -28,6 +28,14 @@ namespace API.Data
             return projects;
         }
 
+        public List<string> GetPlatforms()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.PlatNo).Distinct().ToList();
+            
+            return platforms;
+        }
+
         public async Task<bool> Insert(InsertEntriesRequest insertEntriesRequest)
         {
             var entries = JsonConvert.DeserializeObject<List<MtoEntry>>(insertEntriesRequest.Entries);
@@ -39,7 +47,7 @@ namespace API.Data
             return await _context.SaveChangesAsync()>0;
         }
 
-        public List<dynamic> queryBuilder(EntriesQueryBuilderRequest entriesQueryBuilderRequest)
+        public List<dynamic> QueryBuilder(EntriesQueryBuilderRequest entriesQueryBuilderRequest)
         {
             var query = _context.Entries;
             IQueryable queryable = null;

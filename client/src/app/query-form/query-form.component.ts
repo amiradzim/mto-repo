@@ -61,7 +61,7 @@ export class QueryFormComponent implements OnInit {
   onSubmit() {
     debugger;
     console.warn(this.queryBuilderFormGroup.value);
-    this._entriesService.qyeryBuilder(this.queryBuilderFormGroup.value).subscribe(response => {
+    this._entriesService.queryBuilder(this.queryBuilderFormGroup.value).subscribe(response => {
       //console.log(response);
       if (response && response.length > 0) {
         this.displayedColumns = Object.keys(response[0]);

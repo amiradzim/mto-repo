@@ -21,6 +21,7 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         readonly IEntryRepo _entryRepo;
+
         public EntriesController(DataContext context, IEntryRepo entryRepo)
         {
             _context = context;
@@ -56,7 +57,7 @@ namespace API.Controllers
         //            SqlBulkCopy bulkInsert = new SqlBulkCopy(sqlConnectionString);
         //            bulkInsert.DestinationTableName = "Entries";
         //            bulkInsert.WriteToServer(dr);
-                   
+
         //            connection.Close();
 
 
@@ -73,7 +74,6 @@ namespace API.Controllers
         //    }
         //}
 
-
         [HttpPost("insert")]
         public async Task<ActionResult<bool>> insert(InsertEntriesRequest insertEntriesRequest)
         {
@@ -86,6 +86,7 @@ namespace API.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
+
         [HttpGet]
         public async Task<ActionResult<List<MtoEntry>>> GetEntries()
         {
@@ -99,14 +100,21 @@ namespace API.Controllers
         }
 
         [HttpGet("projects")]
-        public  ActionResult<List<string>> GetProjects()
+        public ActionResult<List<string>> GetProjects()
         {
-            return  _entryRepo.GetProjects();
+            return _entryRepo.GetProjects();
         }
-        [HttpPost("qyeryBuilder")]
-        public ActionResult<List<dynamic>> queryBuilder(EntriesQueryBuilderRequest entriesQueryBuilderRequest)
+
+        [HttpGet("platforms")]
+        public ActionResult<List<string>> GetPlatforms()
         {
-            return _entryRepo.queryBuilder(entriesQueryBuilderRequest);
+            return _entryRepo.GetPlatforms();
+        }
+
+        [HttpPost("queryBuilder")]
+        public ActionResult<List<dynamic>> QueryBuilder(EntriesQueryBuilderRequest entriesQueryBuilderRequest)
+        {
+            return _entryRepo.QueryBuilder(entriesQueryBuilderRequest);
         }
 
         // [HttpGet("filter-select")]
