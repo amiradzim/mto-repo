@@ -55,6 +55,8 @@ namespace API.Data
             IQueryable queryable = null;
             entriesQueryBuilderRequest.sumColumn = entriesQueryBuilderRequest.sumColumn ?? new List<string>();
             entriesQueryBuilderRequest.selectColumn = entriesQueryBuilderRequest.selectColumn ?? new List<string>();
+            entriesQueryBuilderRequest.selectedPlatforms =
+                entriesQueryBuilderRequest.selectedPlatforms ?? new List<string>();
             entriesQueryBuilderRequest.selectedProject =
                 entriesQueryBuilderRequest.selectedProject ?? new List<string>();
             if (entriesQueryBuilderRequest.selectColumn.Count > 0)
