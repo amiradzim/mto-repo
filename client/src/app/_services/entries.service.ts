@@ -19,11 +19,43 @@ export class EntriesService {
   }
 
   getProjects() {
-    return this.http.get<string[]>(this.baseUrl + 'entries/projects', httpOptions);
+    return this.http.get<string[]>(this.baseUrl + 'entries/projname-list', httpOptions);
   }
 
   getPlatforms() {
-    return this.http.get<string[]>(this.baseUrl + 'entries/platforms', httpOptions);
+    return this.http.get<string[]>(this.baseUrl + 'entries/platname-list', httpOptions);
+  }
+
+  getStructType() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/structtype-list', httpOptions);
+  }
+
+  getStructArea() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/structarea-list', httpOptions);
+  }
+
+  getPlatArea() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/platarea-list', httpOptions);
+  }
+
+  getSubArea() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/subarea-list', httpOptions);
+  }
+
+  getMatType() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/mattype-list', httpOptions);
+  }
+
+  getMatVariant() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/matvariant-list', httpOptions);
+  }
+
+  getProcMethod() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/procmethod-list', httpOptions);
+  }
+
+  getMatGroup() {
+    return this.http.get<string[]>(this.baseUrl + 'entries/matgroup-list', httpOptions);
   }
 
   queryBuilder(model: any) {

@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import {HttpClient} from '@angular/common/http';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import * as XLSX from 'xlsx';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TableFilter } from '../_models/table-filter';
-import { EntryItems } from '../_models/entry-items';
-import { environment } from 'src/environments/environment';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {TableFilter} from '../_models/table-filter';
+import {EntryItems} from '../_models/entry-items';
+import {environment} from 'src/environments/environment';
 
 
 @Component({
@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
 
 export class PublicTableComponent implements OnInit {
 
-  public displayedColumns: string[] = ['id', 'projName', 'platNo', 'platType', 'platArea',
+  public displayedColumns: string[] = ['id', 'projName', 'platName', 'structType', 'structArea', 'platArea',
     'subArea', 'matType', 'matVariant', 'procMethod', 'dwgNo', 'dwgCode', 'matGroup', 'description',
     'diameter', 'thickness', 'nal', 'unitWeight', 'baseWeight', 'surfaceArea'];
 
@@ -27,8 +27,9 @@ export class PublicTableComponent implements OnInit {
   public searchForm: FormGroup;
 
   public projName = '';
-  public platNo = '';
-  public platType = '';
+  public platName = '';
+  public structType = '';
+  public structArea = '';
   public platArea = '';
   public subArea = '';
   public matType = '';
@@ -49,13 +50,13 @@ export class PublicTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit(): void {
 
     this.getEntries();
     this.searchFormInit();
-
     this.getFilterPredicate();
 
   }
@@ -74,8 +75,9 @@ export class PublicTableComponent implements OnInit {
   searchFormInit() {
     this.searchForm = new FormGroup({
       projName: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
-      platNo: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
-      platType: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
+      platName: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
+      structType: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
+      structArea: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
       platArea: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
       subArea: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
       matType: new FormControl('', Validators.pattern('^[a-zA-Z ]+$')),
@@ -101,8 +103,9 @@ export class PublicTableComponent implements OnInit {
     }
 
     const prn = this.searchForm.get('projName').value;
-    const pln = this.searchForm.get('platNo').value;
-    const plt = this.searchForm.get('platType').value;
+    const pln = this.searchForm.get('platName').value;
+    const stt = this.searchForm.get('structType').value;
+    const sta = this.searchForm.get('structArea').value;
     const pla = this.searchForm.get('platArea').value;
     const psa = this.searchForm.get('subArea').value;
     const mty = this.searchForm.get('matType').value;
@@ -121,8 +124,9 @@ export class PublicTableComponent implements OnInit {
     const surfaceArea_c = this.searchForm.get('surfaceArea').value;
 
     this.projName = prn === null ? '' : prn;
-    this.platNo = pln === null ? '' : pln;
-    this.platType = plt === null ? '' : plt;
+    this.platName = pln === null ? '' : pln;
+    this.structType = stt === null ? '' : stt;
+    this.structArea = sta === null ? '' : sta;
     this.platArea = pla === null ? '' : pla;
     this.subArea = psa === null ? '' : psa;
     this.matType = mty === null ? '' : mty;
@@ -141,9 +145,10 @@ export class PublicTableComponent implements OnInit {
     this.surfaceArea = surfaceArea_c === null ? '' : surfaceArea_c
 
     // create string of our searching values and split if by '$'
-    const filterValue = this.projName + '$' + this.platNo + '$' + this.platType +
-      '$' + this.platArea + '$' + this.subArea + '$' + this.matType + '$' +
-      this.matVariant + '$' + this.procMethod + '$' + this.matGroup +
+    const filterValue = this.projName + '$' + this.platName + '$' + this.structType +
+      '$' + this.structArea + '$' + this.platArea + '$' + this.subArea +
+      '$' + this.matType + '$' + this.matVariant +
+      '$' + this.procMethod + '$' + this.matGroup +
       '$' + this.dwgNo +
       '$' + this.dwgCode +
       '$' + this.description +
@@ -164,29 +169,31 @@ export class PublicTableComponent implements OnInit {
       // split string per '$' to array
       const filterArray = filters.split('$');
       const projName = filterArray[0];
-      const platNo = filterArray[1];
-      const platType = filterArray[2];
-      const platArea = filterArray[3];
-      const subArea = filterArray[4];
-      const matType = filterArray[5];
-      const matVariant = filterArray[6];
-      const procMethod = filterArray[7];
-      const matGroup = filterArray[8];
-      let dwgNo = filterArray[9];
-      let dwgCode = filterArray[10];
-      let description = filterArray[11];
-      let diameter = filterArray[12];
-      let thickness = filterArray[13];
-      let nal = filterArray[14];
-      let unitWeight = filterArray[15];
-      let baseWeight = filterArray[16];
-      let surfaceArea = filterArray[17];
+      const platName = filterArray[1];
+      const structType = filterArray[2];
+      const structArea = filterArray[3];
+      const platArea = filterArray[4];
+      const subArea = filterArray[5];
+      const matType = filterArray[6];
+      const matVariant = filterArray[7];
+      const procMethod = filterArray[8];
+      const matGroup = filterArray[9];
+      let dwgNo = filterArray[10];
+      let dwgCode = filterArray[12];
+      let description = filterArray[12];
+      let diameter = filterArray[13];
+      let thickness = filterArray[14];
+      let nal = filterArray[15];
+      let unitWeight = filterArray[16];
+      let baseWeight = filterArray[17];
+      let surfaceArea = filterArray[18];
       const matchFilter = [];
 
       // Fetch data from row
       const columnProjName = row.projName;
-      const columnPlatNo = row.platNo;
-      const columnPlatType = row.platType;
+      const columnPlatNo = row.platName;
+      const columnStructType = row.structType;
+      const columnStructArea = row.structArea;
       const columnPlatArea = row.platArea;
       const columnSubArea = row.subArea;
       const columnMatType = row.matType;
@@ -206,8 +213,9 @@ export class PublicTableComponent implements OnInit {
 
       // verify fetching data by our searching values
       const customFilterPRN = columnProjName.toLowerCase().includes(projName);
-      const customFilterPLN = columnPlatNo.toLowerCase().includes(platNo);
-      const customFilterPLT = columnPlatType.toLowerCase().includes(platType);
+      const customFilterPLN = columnPlatNo.toLowerCase().includes(platName);
+      const customFilterSTT = columnStructType.toLowerCase().includes(structType);
+      const customFilterSTA = columnStructArea.toLowerCase().includes(structArea);
       const customFilterPLA = columnPlatArea.toLowerCase().includes(platArea);
       const customFilterPSA = columnSubArea.toLowerCase().includes(subArea);
       const customFilterMTY = columnMatType.toLowerCase().includes(matType);
@@ -229,7 +237,8 @@ export class PublicTableComponent implements OnInit {
 
       matchFilter.push(customFilterPRN);
       matchFilter.push(customFilterPLN);
-      matchFilter.push(customFilterPLT);
+      matchFilter.push(customFilterSTT);
+      matchFilter.push(customFilterSTA);
       matchFilter.push(customFilterPLA);
       matchFilter.push(customFilterPSA);
       matchFilter.push(customFilterMTY);

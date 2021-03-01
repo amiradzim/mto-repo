@@ -22,7 +22,7 @@ namespace API.Data
             _context = context;
         }
 
-        public List<string> GetProjects()
+        public List<string> GetProjName()
         {
             var projects = _context.Entries
                 .Select(x => x.ProjName).Distinct().ToList();
@@ -30,10 +30,74 @@ namespace API.Data
             return projects;
         }
 
-        public List<string> GetPlatforms()
+        public List<string> GetPlatName()
         {
             var platforms = _context.Entries
-                .Select(x => x.PlatNo).Distinct().ToList();
+                .Select(x => x.PlatName).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetStructType()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.StructType).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetStructArea()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.StructArea).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetPlatArea()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.PlatArea).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetSubArea()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.SubArea).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetMatType()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.MatType).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetMatVariant()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.MatVariant).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetProcMethod()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.ProcMethod).Distinct().ToList();
+
+            return platforms;
+        }
+
+        public List<string> GetMatGroup()
+        {
+            var platforms = _context.Entries
+                .Select(x => x.MatGroup).Distinct().ToList();
 
             return platforms;
         }

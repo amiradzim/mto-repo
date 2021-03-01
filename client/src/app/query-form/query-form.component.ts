@@ -24,7 +24,7 @@ export class QueryFormComponent implements OnInit {
 
   projectNameList: string[] = [];
   platformNameList: string[] = [];
-  selectColumnList: string[] = ['ProjName', 'PlatNo', 'PlatType', 'PlatArea', 'SubArea', 'MatType', 'MatVariant', 'ProcMethod', 'DwgNo', 'DwgCode', 'MatGroup', 'Description', 'Diameter', 'Thickness', 'Nal', 'UnitWeight', 'BaseWeight', 'SurfaceArea'];
+  selectColumnList: string[] = ['ProjName', 'PlatName', 'StructType', 'StructArea', 'PlatArea', 'SubArea', 'MatType', 'MatVariant', 'ProcMethod', 'DwgNo', 'DwgCode', 'MatGroup', 'Description', 'Diameter', 'Thickness', 'Nal', 'UnitWeight', 'BaseWeight', 'SurfaceArea'];
   sumColumnList: string[] = ['BaseWeight', 'SurfaceArea'];
   // groupByColumnList: string[] = ['ProjName', 'PlatNo', 'PlatArea', 'SubArea', 'MatType', 'MatVariant', 'ProcMethod'];
   public displayedColumns: string[] = [];

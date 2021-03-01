@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace API.Migrations
+namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210108024319_ChangedColumnNames")]
-    partial class ChangedColumnNames
+    [Migration("20210301030857_StructAdded")]
+    partial class StructAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,14 +24,14 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("BaseWeight")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("BaseWeight")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("Diameter")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("Diameter")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("DwgCode")
                         .HasColumnType("TEXT");
@@ -48,16 +48,13 @@ namespace API.Migrations
                     b.Property<string>("MatVariant")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("Nal")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("Nal")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("PlatArea")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PlatNo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PlatType")
+                    b.Property<string>("PlatName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProcMethod")
@@ -66,17 +63,23 @@ namespace API.Migrations
                     b.Property<string>("ProjName")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("StructArea")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("StructType")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SubArea")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("SurfaceArea")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("SurfaceArea")
+                        .HasColumnType("REAL");
 
-                    b.Property<long>("Thickness")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("Thickness")
+                        .HasColumnType("REAL");
 
-                    b.Property<long>("UnitWeight")
-                        .HasColumnType("INTEGER");
+                    b.Property<float>("UnitWeight")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
@@ -89,11 +92,26 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("KnownAs")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LastActive")
+                        .HasColumnType("TEXT");
+
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("BLOB");
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT");

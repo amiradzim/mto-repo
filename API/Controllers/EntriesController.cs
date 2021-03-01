@@ -99,16 +99,64 @@ namespace API.Controllers
             return await _context.Entries.FindAsync(id);
         }
 
-        [HttpGet("projects")]
-        public ActionResult<List<string>> GetProjects()
+        [HttpGet("projname-list")]
+        public ActionResult<List<string>> GetProjName()
         {
-            return _entryRepo.GetProjects();
+            return _entryRepo.GetProjName();
         }
 
-        [HttpGet("platforms")]
-        public ActionResult<List<string>> GetPlatforms()
+        [HttpGet("platname-list")]
+        public ActionResult<List<string>> GetPlatName()
         {
-            return _entryRepo.GetPlatforms();
+            return _entryRepo.GetPlatName();
+        }
+
+        [HttpGet("structtype-list")]
+        public ActionResult<List<string>> GetStructType()
+        {
+            return _entryRepo.GetStructType();
+        }
+
+        [HttpGet("structarea-list")]
+        public ActionResult<List<string>> GetStructArea()
+        {
+            return _entryRepo.GetStructArea();
+        }
+
+        [HttpGet("platarea-list")]
+        public ActionResult<List<string>> GetPlatArea()
+        {
+            return _entryRepo.GetPlatArea();
+        }
+
+        [HttpGet("subrea-list")]
+        public ActionResult<List<string>> GetSubArea()
+        {
+            return _entryRepo.GetSubArea();
+        }
+
+        [HttpGet("mattype-list")]
+        public ActionResult<List<string>> GetMatType()
+        {
+            return _entryRepo.GetMatType();
+        }
+
+        [HttpGet("matvariant-list")]
+        public ActionResult<List<string>> GetMatVariant()
+        {
+            return _entryRepo.GetMatVariant();
+        }
+
+        [HttpGet("procmethod-list")]
+        public ActionResult<List<string>> GetProcMethod()
+        {
+            return _entryRepo.GetProcMethod();
+        }
+
+        [HttpGet("matgroup-list")]
+        public ActionResult<List<string>> GetMatGroup()
+        {
+            return _entryRepo.GetMatGroup();
         }
 
         [HttpPost("queryBuilder")]

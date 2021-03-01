@@ -1,8 +1,9 @@
 export interface TableFilter {
 
     projName: string;
-    platNo: string;
-    platType: string;
+    platName: string;
+    structType: string;
+    structArea: string;
     platArea: string;
     subArea: string;
     matType: string;
