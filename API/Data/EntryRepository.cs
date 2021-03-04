@@ -117,16 +117,22 @@ namespace API.Data
         {
             var query = _context.Entries;
             IQueryable queryable = null;
+            // turns user input into list
+            
             entriesQueryBuilderRequest.sumColumn = entriesQueryBuilderRequest.sumColumn ?? new List<string>();
             entriesQueryBuilderRequest.selectColumn = entriesQueryBuilderRequest.selectColumn ?? new List<string>();
             entriesQueryBuilderRequest.selectedPlatforms =
                 entriesQueryBuilderRequest.selectedPlatforms ?? new List<string>();
             entriesQueryBuilderRequest.selectedProject =
                 entriesQueryBuilderRequest.selectedProject ?? new List<string>();
+            // if selected columns are selected
             if (entriesQueryBuilderRequest.selectColumn.Count > 0)
             {
+                // if sum columns are selected
                 if (entriesQueryBuilderRequest.sumColumn.Count > 0)
                 {
+                    // create a new list called mergecolumns; mergecolumns is a list of list or basically a table
+                    // so Add will add a new column while AddRange will add a new column with data
                     List<string> mergeColumns = new List<string>();
                     mergeColumns.AddRange(entriesQueryBuilderRequest.selectColumn);
 
@@ -135,8 +141,15 @@ namespace API.Data
                         mergeColumns.Add("ProjName");
                     }
 
+                    if (entriesQueryBuilderRequest.selectedPlatforms.Count > 0)
+                    {
+                        mergeColumns.Add("PlatName");
+                    }
+
                     //mergeColumns.AddRange(entriesQueryBuilderRequest.sumColumn);
+                    // groups each column to distinct items
                     mergeColumns = mergeColumns.Distinct().ToList();
+                    // removes all data in sum columns selected because they aren't summed
                     mergeColumns.RemoveAll(x => entriesQueryBuilderRequest.sumColumn.Contains(x));
                     string groupByColumns = string.Join(",", mergeColumns);
                     string selectColumns = string.Join(",", mergeColumns.Select(x => $"Key.{x}").ToList());
@@ -185,7 +198,8 @@ namespace API.Data
 
             if (entriesQueryBuilderRequest.selectedProject.Count > 0)
             {
-                queryable = queryable.Where("it.ProjName in @0", entriesQueryBuilderRequest.selectedProject);
+                queryable = queryable.Where("it.ProjName in @0", entriesQueryBuilderRequest.selectedProject)
+                    .Where("it.PlatName in @0", entriesQueryBuilderRequest.selectedPlatforms);
             }
 
             return queryable.ToDynamicList();

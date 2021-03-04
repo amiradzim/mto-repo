@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormControl, } from '@angular/forms';
-import { EntriesService } from '../_services/entries.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormControl,} from '@angular/forms';
+import {EntriesService} from '../_services/entries.service';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import * as XLSX from "xlsx";
 
 @Component({
@@ -26,14 +26,15 @@ export class QueryFormComponent implements OnInit {
   platformNameList: string[] = [];
   selectColumnList: string[] = ['ProjName', 'PlatName', 'StructType', 'StructArea', 'PlatArea', 'SubArea', 'MatType', 'MatVariant', 'ProcMethod', 'DwgNo', 'DwgCode', 'MatGroup', 'Description', 'Diameter', 'Thickness', 'Nal', 'UnitWeight', 'BaseWeight', 'SurfaceArea'];
   sumColumnList: string[] = ['BaseWeight', 'SurfaceArea'];
-  // groupByColumnList: string[] = ['ProjName', 'PlatNo', 'PlatArea', 'SubArea', 'MatType', 'MatVariant', 'ProcMethod'];
   public displayedColumns: string[] = [];
 
 
   public entries: MatTableDataSource<any>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor(private _formBuilder: FormBuilder, private _entriesService: EntriesService) { }
+
+  constructor(private _formBuilder: FormBuilder, private _entriesService: EntriesService) {
+  }
 
   ngOnInit(): void {
 
@@ -43,7 +44,7 @@ export class QueryFormComponent implements OnInit {
       console.log(error);
     })
 
-    this._entriesService.getPlatforms().subscribe( response => {
+    this._entriesService.getPlatforms().subscribe(response => {
       this.platformNameList = response;
     }, error => {
       console.log(error);
@@ -54,7 +55,6 @@ export class QueryFormComponent implements OnInit {
       selectedPlatforms: new FormControl(),
       selectColumn: new FormControl(),
       sumColumn: new FormControl(),
-      // groupByColumn: new FormControl(),
     });
     // this.toSelectGroup = this._formBuilder.group({
     //   firstCtrl: ['', Validators.required]
@@ -71,7 +71,7 @@ export class QueryFormComponent implements OnInit {
     debugger;
     console.warn(this.queryBuilderFormGroup.value);
     this._entriesService.queryBuilder(this.queryBuilderFormGroup.value).subscribe(response => {
-      //console.log(response);
+      // console.log(response);
       if (response && response.length > 0) {
         this.displayedColumns = Object.keys(response[0]);
         this.entries = new MatTableDataSource(response);
@@ -83,6 +83,7 @@ export class QueryFormComponent implements OnInit {
 
     })
   }
+
   /*exportcsv() {
     var html = document.getElementById('entries-table').outerHTML;
     this.export_table_to_csv(html, "table.csv");
