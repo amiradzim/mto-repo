@@ -1,3 +1,4 @@
+using API.DTOs;
 using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,6 @@ namespace API.Data
         {
         }
         public DbSet<MtoUser> Users { get; set; }
-        public DbSet<MtoEntry> Entries { get; set; }
+        public DbSet<EntryDto> Entries { get; set; }
     }
 }

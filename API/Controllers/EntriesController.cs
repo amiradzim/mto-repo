@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using API.Data;
+using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using API.Models.Request.Entries;
@@ -88,13 +89,13 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<MtoEntry>>> GetEntries()
+        public async Task<ActionResult<List<EntryDto>>> GetEntries()
         {
             return await _context.Entries.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<MtoEntry>> GetEntry(int id)
+        public async Task<ActionResult<EntryDto>> GetEntry(int id)
         {
             return await _context.Entries.FindAsync(id);
         }
